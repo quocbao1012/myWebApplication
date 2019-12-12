@@ -1,0 +1,52 @@
+﻿@page
+@model WebApplication1.Pages.vemaybay.DetailsModel
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>VeMayBay</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VeMayBay.SoGhe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VeMayBay.SoGhe)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VeMayBay.KhoangGhe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VeMayBay.KhoangGhe)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VeMayBay.GiaVe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VeMayBay.GiaVe)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VeMayBay.ChuyenBay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VeMayBay.ChuyenBay.ChuyenBayId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VeMayBay.PhieuDatVe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VeMayBay.PhieuDatVe.PhieuDatVeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.VeMayBay.VeMayBayId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

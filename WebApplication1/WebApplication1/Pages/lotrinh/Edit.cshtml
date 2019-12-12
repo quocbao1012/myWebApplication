@@ -1,0 +1,42 @@
+﻿@page
+@model WebApplication1.Pages.lotrinh.EditModel
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>LoTrinh</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LoTrinh.LoTrinhId" />
+            <div class="form-group">
+                <label asp-for="LoTrinh.SanBayDi" class="control-label"></label>
+                <input asp-for="LoTrinh.SanBayDi" class="form-control" />
+                <span asp-validation-for="LoTrinh.SanBayDi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoTrinh.SanBayDen" class="control-label"></label>
+                <input asp-for="LoTrinh.SanBayDen" class="form-control" />
+                <span asp-validation-for="LoTrinh.SanBayDen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

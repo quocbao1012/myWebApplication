@@ -1,0 +1,82 @@
+﻿@page
+@model WebApplication1.Pages.phieudatve.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Quản Lý Phiếu Đặt Vé";
+}
+
+<h1>Quản Lý Phiếu Đặt Vé</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        PhieuDatVeId:
+        <input type="text" name="searchString" asp-for="filter" value="@ViewData["searchString"]" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuDatVe[0].PhieuDatVeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuDatVe[0].NgayDat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuDatVe[0].ChuyenBay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuDatVe[0].KhachHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhieuDatVe[0].LoTrinh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.phieudatves)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhieuDatVeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChuyenBay.ChuyenBayId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHang.KhachHangId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoTrinh.LoTrinhId)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PhieuDatVeId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PhieuDatVeId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PhieuDatVeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.phieudatves.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.phieudatves.HasNextPage ? "disabled" : "";
+}
+<div class="container">
+    <a class="btn btn-default @prevDisabled"
+       asp-route-pageIndex="@(Model.phieudatves.PageIndex - 1)">Previous</a>
+
+    <a class="btn btn-default @nextDisabled"
+       asp-route-pageIndex="@(Model.phieudatves.PageIndex + 1)">Next</a>
+</div>

@@ -1,0 +1,77 @@
+﻿@page
+@model WebApplication1.Pages.khachhang.IndexModel
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Quản Lý Khách Hàng";
+}
+
+<h1>Quản Lý Khách Hàng</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        KhachHangId:
+        <input type="text" name="searchString" asp-for="filter" value="@ViewData["searchString"]" />
+        TenKhachHang:
+        <input type="text" name="searchString1" asp-for="filter1" value="@ViewData["searchString1"]" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang[0].KhachHangId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang[0].TenKhachHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang[0].Cmnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KhachHang[0].Sdt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.khachhangs)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhachHangId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKhachHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cmnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.KhachHangId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.KhachHangId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.KhachHangId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.khachhangs.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.khachhangs.HasNextPage ? "disabled" : "";
+}
+<div class="container">
+    <a class="btn btn-default @prevDisabled"
+       asp-route-pageIndex="@(Model.khachhangs.PageIndex - 1)">Previous</a>
+
+    <a class="btn btn-default @nextDisabled"
+       asp-route-pageIndex="@(Model.khachhangs.PageIndex + 1)">Next</a>
+</div>

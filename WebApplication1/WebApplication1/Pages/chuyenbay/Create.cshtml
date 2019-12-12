@@ -1,0 +1,51 @@
+﻿@page
+@model WebApplication1.Pages.chuyenbay.CreateModel
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ChuyenBay</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ChuyenBay.ChuyenBayId" class="control-label"></label>
+                <input asp-for="ChuyenBay.ChuyenBayId" class="form-control" />
+                <span asp-validation-for="ChuyenBay.ChuyenBayId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChuyenBay.LoaiMayBay" class="control-label"></label>
+                <input asp-for="ChuyenBay.LoaiMayBay" class="form-control" />
+                <span asp-validation-for="ChuyenBay.LoaiMayBay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChuyenBay.NgayCatCanh" class="control-label"></label>
+                <input asp-for="ChuyenBay.NgayCatCanh" class="form-control" />
+                <span asp-validation-for="ChuyenBay.NgayCatCanh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChuyenBay.GioCatCanh" class="control-label"></label>
+                <input asp-for="ChuyenBay.GioCatCanh" class="form-control" />
+                <span asp-validation-for="ChuyenBay.GioCatCanh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

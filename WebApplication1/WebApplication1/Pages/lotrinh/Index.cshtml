@@ -1,0 +1,71 @@
+﻿@page
+@model WebApplication1.Pages.lotrinh.IndexModel
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Quản Lý Lộ Trình";
+}
+
+<h1>Quản Lý Lộ Trình</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        SanBayDi:
+        <input type="text" name="searchString" asp-for="filter" value="@ViewData["searchString"]" />
+        SanBayDen:
+        <input type="text" name="searchString1" asp-for="filter1" value="@ViewData["searchString1"]" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LoTrinh[0].LoTrinhId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoTrinh[0].SanBayDi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoTrinh[0].SanBayDen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.lotrinhs)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoTrinhId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanBayDi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanBayDen)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.LoTrinhId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.LoTrinhId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.LoTrinhId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.lotrinhs.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.lotrinhs.HasNextPage ? "disabled" : "";
+}
+<div class="container">
+    <a class="btn btn-default @prevDisabled"
+       asp-route-pageIndex="@(Model.lotrinhs.PageIndex - 1)">Previous</a>
+
+    <a class="btn btn-default @nextDisabled"
+       asp-route-pageIndex="@(Model.lotrinhs.PageIndex + 1)">Next</a>
+</div>

@@ -1,0 +1,80 @@
+﻿@page
+@model WebApplication1.Pages.chuyenbay.IndexModel
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Quản Lý Chuyến Bay";
+}
+
+<h1>Quản Lý Chuyến Bay</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        ChuyenBayId:
+        <input type="text" name="searchString" asp-for="filter" value="@ViewData["searchString"]" />
+        LoaiMayBay:
+        <select asp-for="ChuyenBayLoaiMayBay" asp-items="Model.LoaiMayBay">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ChuyenBay[0].ChuyenBayId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChuyenBay[0].LoaiMayBay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChuyenBay[0].NgayCatCanh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChuyenBay[0].GioCatCanh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.chuyenbays)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuyenBayId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiMayBay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayCatCanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioCatCanh)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ChuyenBayId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ChuyenBayId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ChuyenBayId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.chuyenbays.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.chuyenbays.HasNextPage ? "disabled" : "";
+}
+<div class="container">
+    <a class="btn btn-default @prevDisabled"
+       asp-route-pageIndex="@(Model.chuyenbays.PageIndex - 1)">Previous</a>
+
+    <a class="btn btn-default @nextDisabled"
+       asp-route-pageIndex="@(Model.chuyenbays.PageIndex + 1)">Next</a>
+</div>

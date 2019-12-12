@@ -1,0 +1,47 @@
+﻿@page
+@model WebApplication1.Pages.khachhang.EditModel
+@{
+    Layout = "_Layout";
+}
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>KhachHang</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="KhachHang.KhachHangId" />
+            <div class="form-group">
+                <label asp-for="KhachHang.TenKhachHang" class="control-label"></label>
+                <input asp-for="KhachHang.TenKhachHang" class="form-control" />
+                <span asp-validation-for="KhachHang.TenKhachHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KhachHang.Cmnd" class="control-label"></label>
+                <input asp-for="KhachHang.Cmnd" class="form-control" />
+                <span asp-validation-for="KhachHang.Cmnd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KhachHang.Sdt" class="control-label"></label>
+                <input asp-for="KhachHang.Sdt" class="form-control" />
+                <span asp-validation-for="KhachHang.Sdt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

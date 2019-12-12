@@ -1,0 +1,54 @@
+﻿@page
+@model WebApplication1.Pages.phieudatve.CreateModel
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PhieuDatVe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PhieuDatVe.PhieuDatVeId" class="control-label"></label>
+                <input asp-for="PhieuDatVe.PhieuDatVeId" class="form-control" />
+                <span asp-validation-for="PhieuDatVe.PhieuDatVeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhieuDatVe.NgayDat" class="control-label"></label>
+                <input asp-for="PhieuDatVe.NgayDat" class="form-control" />
+                <span asp-validation-for="PhieuDatVe.NgayDat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhieuDatVe.KhachHangId" class="control-label"></label>
+                <select asp-for="PhieuDatVe.KhachHangId" class="form-control" asp-items="ViewBag.KhachHangId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhieuDatVe.ChuyenBayId" class="control-label"></label>
+                <select asp-for="PhieuDatVe.ChuyenBayId" class="form-control" asp-items="ViewBag.ChuyenBayId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhieuDatVe.LoTrinhId" class="control-label"></label>
+                <select asp-for="PhieuDatVe.LoTrinhId" class="form-control" asp-items="ViewBag.LoTrinhId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

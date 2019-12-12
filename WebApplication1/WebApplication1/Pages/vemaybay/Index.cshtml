@@ -1,0 +1,88 @@
+﻿@page
+@model WebApplication1.Pages.vemaybay.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+@{
+    ViewData["Title"] = "Quản Lý Vé Máy Bay";
+}
+
+<h1>Quản Lý Vé Máy Bay</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        VeMayBayId:
+        <input type="text" name="searchString" asp-for="filter" value="@ViewData["searchString"]" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VeMayBay[0].VeMayBayId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeMayBay[0].SoGhe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeMayBay[0].KhoangGhe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeMayBay[0].GiaVe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeMayBay[0].ChuyenBay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VeMayBay[0].PhieuDatVe)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.vemaybays)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VeMayBayId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoGhe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhoangGhe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaVe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuyenBay.ChuyenBayId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhieuDatVe.PhieuDatVeId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.VeMayBayId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.VeMayBayId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.VeMayBayId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.vemaybays.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.vemaybays.HasNextPage ? "disabled" : "";
+}
+<div class="container">
+    <a class="btn btn-default @prevDisabled"
+       asp-route-pageIndex="@(Model.vemaybays.PageIndex - 1)">Previous</a>
+
+    <a class="btn btn-default @nextDisabled"
+       asp-route-pageIndex="@(Model.vemaybays.PageIndex + 1)">Next</a>
+</div>
